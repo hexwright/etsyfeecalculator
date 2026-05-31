@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeyFlow — Typing Tutor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-key">⌨</span>
+      <span class="logo-text">KeyFlow</span>
+    </div>
+    <div class="header-controls">
+      <button class="icon-btn" id="soundToggle" title="Toggle sound">
+        <svg id="soundIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="icon-btn" id="highScoreBtn" title="High Scores">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN APP -->
+  <main class="app">
+
+    <!-- CONFIG BAR -->
+    <div class="config-bar" id="configBar">
+      <div class="config-group">
+        <span class="config-label">difficulty</span>
+        <div class="pill-group" id="difficultyGroup">
+          <button class="pill" data-value="easy">easy</button>
+          <button class="pill active" data-value="medium">medium</button>
+          <button class="pill" data-value="hard">hard</button>
+        </div>
+      </div>
+      <div class="config-divider"></div>
+      <div class="config-group">
+        <span class="config-label">time</span>
+        <div class="pill-group" id="timerGroup">
+          <button class="pill" data-value="30">30s</button>
+          <button class="pill active" data-value="60">60s</button>
+          <button class="pill" data-value="120">120s</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE STATS BAR -->
+    <div class="live-stats" id="liveStats">
+      <div class="stat-item">
+        <span class="stat-val" id="liveWpm">—</span>
+        <span class="stat-lbl">wpm</span>
+      </div>
+      <div class="stat-item timer-item">
+        <span class="stat-val" id="timerDisplay">60</span>
+        <span class="stat-lbl">sec</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" id="liveAcc">—</span>
+        <span class="stat-lbl">acc</span>
+      </div>
+    </div>
+
+    <!-- TYPING AREA -->
+    <div class="typing-container" id="typingContainer">
+      <div class="text-display" id="textDisplay"></div>
+      <textarea
+        id="inputBox"
+        class="input-box"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Start typing to begin…"
+      ></textarea>
+      <div class="cursor-hint" id="cursorHint">click here or press any key to focus</div>
+    </div>
+
+    <!-- RESTART BUTTON -->
+    <button class="restart-btn" id="restartBtn" title="Restart (Tab + Enter)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+      <span>restart</span>
+    </button>
+
+  </main>
+
+  <!-- RESULTS OVERLAY -->
+  <div class="overlay" id="resultsOverlay">
+    <div class="results-card">
+      <h2 class="results-title">test complete</h2>
+      <div class="results-grid">
+        <div class="result-block accent">
+          <span class="result-val" id="resWpm">0</span>
+          <span class="result-lbl">wpm</span>
+        </div>
+        <div class="result-block">
+          <span class="result-val" id="resAcc">0%</span>
+          <span class="result-lbl">accuracy</span>
+        </div>
+        <div class="result-block">
+          <span class="result-val" id="resChars">0</span>
+          <span class="result-lbl">characters</span>
+        </div>
+        <div class="result-block">
+          <span class="result-val" id="resErrors">0</span>
+          <span class="result-lbl">errors</span>
+        </div>
+        <div class="result-block">
+          <span class="result-val" id="resTime">0s</span>
+          <span class="result-lbl">time</span>
+        </div>
+        <div class="result-block">
+          <span class="result-val" id="resBest">—</span>
+          <span class="result-lbl">best wpm</span>
+        </div>
+      </div>
+      <div class="new-record" id="newRecord">🏆 New High Score!</div>
+      <div class="results-actions">
+        <button class="btn-primary" id="tryAgainBtn">try again</button>
+        <button class="btn-secondary" id="newTextBtn">new text</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH SCORES MODAL -->
+  <div class="overlay" id="scoresOverlay">
+    <div class="scores-card">
+      <div class="scores-header">
+        <h2 class="results-title">high scores</h2>
+        <button class="icon-btn" id="closeScores">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="scores-tabs">
+        <button class="pill active" data-tab="30">30s</button>
+        <button class="pill" data-tab="60">60s</button>
+        <button class="pill" data-tab="120">120s</button>
+      </div>
+      <div class="scores-list" id="scoresList"></div>
+      <button class="btn-secondary danger" id="clearScores">clear scores</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
