@@ -4,7 +4,7 @@
 
 A free, fast, single-file web tool that helps Etsy sellers calculate listing fees, transaction fees, payment processing costs, and real net profit — instantly, with no signup required.
 
-🔗 **Live Demo:** [`https://YOUR-USERNAME.github.io/etsy-fee-calculator`](https://hexwright.github.io/etsyfeecalculator/)
+🔗 **Live Demo:** (https://hexwright.github.io/etsyfeecalculator/)
 
 ---
 
