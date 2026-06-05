@@ -364,8 +364,7 @@
       .flip-container:hover .flip-inner { transform:rotateY(180deg); }
     }
     /* Mobile: .flipped class flips */
-    .flip-container.flipped .flip-inner { transform:rotateY(180deg); }
-
+    
     .flip-front, .flip-back {
       position:absolute; inset:0;
       backface-visibility:hidden;
@@ -1169,16 +1168,6 @@
     dragOffset=0;
   });
 
-  /* Mobile tap to flip cards */
-  const isMobile = () => window.innerWidth <= 768;
-  containers.forEach(c => {
-    c.addEventListener('click', e => {
-      if(!isMobile()) return;
-      /* Don't flip if click is on the back CTA link */
-      if(e.target.closest('.back-cta')) return;
-      c.classList.toggle('flipped');
-    });
-  });
 
   /* Keyboard nav */
   document.addEventListener('keydown', e => {
