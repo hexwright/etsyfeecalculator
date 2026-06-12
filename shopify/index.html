@@ -677,12 +677,24 @@
         <span>Shopify Calc</span>
       </div>
       <div class="hdr-btns">
-        <button class="btn-dark" id="btnDark" aria-label="Toggle dark mode">
-          <span id="darkIcon">☽</span>
-          <span id="darkLbl">Dark</span>
-        </button>
-        <button class="btn-reset" id="btnReset" aria-label="Reset calculator">↺ Reset</button>
-      </div>
+  <button class="btn-dark" id="btnDark" aria-label="Toggle dark mode">
+    <span id="darkIcon">☽</span>
+    <span id="darkLbl">Dark</span>
+  </button>
+  <div style="position:relative;">
+    <button class="btn-dark" id="btnCalcSwitch" aria-label="Switch calculator" onclick="document.getElementById('calcMenu').style.display=document.getElementById('calcMenu').style.display==='block'?'none':'block'">
+      Switch Calculator
+    </button>
+    <div id="calcMenu" style="display:none;position:absolute;right:0;top:36px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);min-width:180px;z-index:200;padding:6px 0;">
+      <a href="https://profitcalcu.com/amazon" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Amazon Calculator</a>
+      <a href="https://profitcalcu.com/ebay" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">eBay Calculator</a>
+      <a href="https://profitcalcu.com/etsy" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Etsy Calculator</a>
+      <a href="https://profitcalcu.com/aliexpress" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">AliExpress Calculator</a>
+      <a href="https://profitcalcu.com/alibaba" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Alibaba Calculator</a>
+    </div>
+  </div>
+  <button class="btn-reset" id="btnReset" aria-label="Reset calculator">↺ Reset</button>
+</div>
     </div>
   </header>
 
@@ -1003,6 +1015,16 @@
           <a href="https://profitcalcu.com/alibaba"     class="calc-chip">🔵 Alibaba Calculator</a>
         </div>
       </section>
+      <section class="seo-section">
+  <h2>Related Guides</h2>
+  <div class="calc-links">
+    <a href="https://profitcalcu.com/blog/shopify-transaction-fees-2026/" class="calc-chip">Shopify Transaction Fees 2026</a>
+    <a href="https://profitcalcu.com/blog/how-to-calculate-profit-on-shopify/" class="calc-chip">How to Calculate Profit on Shopify ?</a>
+    <a href="https://profitcalcu.com/blog/shopify-payments-vs-paypal-2026/" class="calc-chip">Shopify Payments vs PayPal — Which Costs Less</a>
+    <a href="https://profitcalcu.com/blog/shopify-plan-comparison-2026/" class="calc-chip">Shopify Plan Comparison 2026 — Basic vs Shopify vs Advanced</a>
+    <a href="https://profitcalcu.com/blog/shopify-vs-etsy-vs-amazon-2026/" class="calc-chip">Shopify vs Etsy vs Amazon — Where Should You Sell ?</a>
+  </div>
+</section>
 
     </div><!-- /wrap -->
 
@@ -1160,6 +1182,13 @@
     g('btnDark').addEventListener('click',  toggleDark);
     g('btnReset').addEventListener('click', reset);
 
+    document.addEventListener('click', function(e){
+  var menu = document.getElementById('calcMenu');
+  var btn = document.getElementById('btnCalcSwitch');
+  if(menu && btn && !btn.contains(e.target) && !menu.contains(e.target)){
+    menu.style.display = 'none';
+  }
+});
     loadDark(); syncSym(); calc();
   </script>
 </body>
