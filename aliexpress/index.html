@@ -660,12 +660,24 @@
         <span>AliExpress Calc</span>
       </div>
       <div class="hdr-btns">
-        <button class="btn-dark" id="btnDark" aria-label="Toggle dark mode">
-          <span id="darkIcon">☽</span>
-          <span id="darkLbl">Dark</span>
-        </button>
-        <button class="btn-reset" id="btnReset" aria-label="Reset calculator">↺ Reset</button>
-      </div>
+  <button class="btn-dark" id="btnDark" aria-label="Toggle dark mode">
+    <span id="darkIcon">☽</span>
+    <span id="darkLbl">Dark</span>
+  </button>
+  <div style="position:relative;">
+    <button class="btn-dark" id="btnCalcSwitch" aria-label="Switch calculator" onclick="document.getElementById('calcMenu').style.display=document.getElementById('calcMenu').style.display==='block'?'none':'block'">
+      Switch Calculator
+    </button>
+    <div id="calcMenu" style="display:none;position:absolute;right:0;top:36px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);min-width:180px;z-index:200;padding:6px 0;">
+      <a href="https://profitcalcu.com/amazon" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Amazon Calculator</a>
+      <a href="https://profitcalcu.com/shopify" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Shopify Calculator</a>
+      <a href="https://profitcalcu.com/ebay" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">eBay Calculator</a>
+      <a href="https://profitcalcu.com/etsy" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Etsy Calculator</a>
+      <a href="https://profitcalcu.com/alibaba" style="display:block;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;">Alibaba Calculator</a>
+    </div>
+  </div>
+  <button class="btn-reset" id="btnReset" aria-label="Reset calculator">↺ Reset</button>
+</div>
     </div>
   </header>
 
@@ -1000,6 +1012,15 @@
           <a href="https://profitcalcu.com/alibaba"     class="calc-chip">🔵 Alibaba Calculator</a>
         </div>
       </section>
+      <section class="seo-section">
+  <h2>Related Guides</h2>
+  <div class="calc-links">
+    <a href="https://profitcalcu.com/blog/aliexpress-seller-fees-2026/" class="calc-chip">AliExpress Seller Fees 2026</a>
+    <a href="https://profitcalcu.com/blog/alibaba-vs-aliexpress-importing/" class="calc-chip">Alibaba vs AliExpress — Which is Better?</a>
+    <a href="https://profitcalcu.com/blog/aliexpress-dropshipping-profit-margins-2026/" class="calc-chip">AliExpress Dropshipping Profit Margins 2026</a>
+    <a href="https://profitcalcu.com/blog/aliexpress-shipping-times-2026/" class="calc-chip">AliExpress Shipping Times 2026</a>
+  </div>
+</section>
 
     </div><!-- /wrap -->
 
@@ -1146,6 +1167,13 @@
     g('btnReset').addEventListener('click', reset);
 
     loadDark(); syncSym(); calc();
+    document.addEventListener('click', function(e){
+  var menu = document.getElementById('calcMenu');
+  var btn = document.getElementById('btnCalcSwitch');
+  if(menu && btn && !btn.contains(e.target) && !menu.contains(e.target)){
+    menu.style.display = 'none';
+  }
+});
   </script>
 </body>
 </html>
